@@ -53,7 +53,7 @@ class App extends React.Component {
             <Container className="my-5">
                 <Row>                
                     <Col md={4}>
-                        <Sidebar/>
+                        <Sidebar polls={this.state.polls} />
                     </Col>
                     <Col md={8}>
                         <MainContent/>
