@@ -48,12 +48,16 @@ class App extends React.Component {
         this.setState({ selectedPoll: poll })
     }
 
+    handleSearch = searchTerm => {
+
+    }
+
     render() {
         return (
             <Container className="my-5">
                 <Row>                
                     <Col md={4}>
-                        <Sidebar polls={this.state.polls} />
+                        <Sidebar polls={this.state.polls}  searchTerm={this.state.searchTerm} handleSearch={this.handleSearch} selectPoll={this.selectPoll}/>
                     </Col>
                     <Col md={8}>
                         <MainContent/>
