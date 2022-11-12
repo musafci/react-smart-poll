@@ -55,6 +55,29 @@ class PollForm extends React.Component {
 
     handleSubmit = event => {
         event.preventDefault()
+        const {isValid, errors} = this.validate()
+
+        if (isValid) {
+            const { title, description, options } = this.state
+            this.props.submit({
+                title,
+                description,
+                options
+            })
+
+            event.target.reset();
+
+            this.setState({
+                title: '',
+                description: '',
+                options: defaultOptions,
+                errors: {}
+            })
+
+
+        } else {
+            this.setState({ errors });
+        }
     }
 
     validate = () => {
