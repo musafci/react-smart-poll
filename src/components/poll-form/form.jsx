@@ -40,8 +40,46 @@ const MyForm = ({
     <FormGroup>
         <Label>
             Enter Options
-            <span style={{marginLeft: '30px', background: 'green', color: 'white', padding: '5px', borderRadius: '5px', cursor: 'pointer'}}>Add Option</span>
-            
+            <span style={{
+                    marginLeft: '30px', 
+                    background: 'green', 
+                    color: 'white', 
+                    padding: '5px', 
+                    borderRadius: '5px',
+                    cursor: 'pointer'
+                }}
+                onClick={createOption}
+            >
+                Add Option
+            </span>
         </Label>
+
+        {options.map((opt, index) => (
+                // console.log(opt, index);
+                <div key={opt.id} className='d-flex my-2'>
+                    <Input
+                        value={opt.value}
+                        onChange={e => handleOptionsChange(e, index)}
+                        invalid={errors.options && errors.options[index] ? true : false}
+                    />
+
+                    <Button
+                        color="danger"
+                        disabled={options.length < 2}
+                        className="ml-2"
+                        onClick={() => deleteOption(index)}
+                    >
+                        Delete
+                    </Button>
+                </div>
+            ))}
+
+
     </FormGroup>
+
+    <Button color="primary" type="submit">
+        {buttonValue}
+    </Button>
 </Form>
+
+export default MyForm;

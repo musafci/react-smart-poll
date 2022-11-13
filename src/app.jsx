@@ -31,7 +31,7 @@ class App extends React.Component {
 
     updatePoll = updatedPoll => {
         const polls = [...this.state.polls]
-        const poll = polls.find(p => p.id == updatedPoll.id)
+        const poll = polls.find(p => p.id === updatedPoll.id)
 
         poll.title = updatedPoll.title
         poll.description = updatedPoll.description
@@ -39,12 +39,12 @@ class App extends React.Component {
     }
 
     deletePoll = pollId => {
-        const polls =  this.state.polls.filter(p => p.id != pollId)
+        const polls =  this.state.polls.filter(p => p.id !== pollId)
         this.setState({ polls, selectedPoll: {} });
     }
 
     selectPoll = pollId => {
-        const poll = this.state.polls.find(p => p.id == pollId)
+        const poll = this.state.polls.find(p => p.id === pollId)
         this.setState({ selectedPoll: poll })
     }
 
@@ -55,9 +55,15 @@ class App extends React.Component {
     render() {
         return (
             <Container className="my-5">
-                <Row>                
+                <Row>
                     <Col md={4}>
-                        <Sidebar polls={this.state.polls}  searchTerm={this.state.searchTerm} handleSearch={this.handleSearch} selectPoll={this.selectPoll}/>
+                        <Sidebar
+                            polls={this.state.polls}
+                            searchTerm={this.state.searchTerm}
+                            handleSearch={this.handleSearch}
+                            selectPoll={this.selectPoll}
+                            addNewPoll={this.addNewPoll}
+                        />
                     </Col>
                     <Col md={8}>
                         <MainContent/>
