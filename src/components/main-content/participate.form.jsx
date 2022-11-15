@@ -79,7 +79,62 @@ class ParticipationFrom extends React.Component {
                         Delete
                     </Button>
                 </div>
+
+                {
+                    this.props.poll.options.map(opt => (
+                        <FormGroup className="my-2" key={opt.id}>
+                            <Label className="d-flex">
+                                <CustomInput
+                                    type="radio"
+                                    id={opt.id}
+                                    name="selectedOption"
+                                    value={opt.id}
+                                    onChange={this.handleChange}
+                                    invalid={this.state.errors.selectedOption ? true : false}
+                                />
+                                {opt.value}
+                                <span
+                                    style={{padding: '5px 20px', background: 'green', color: 'white', borderRadius: '5px'}}
+                                    className="ml-auto"
+                                >
+                                    {opt.vote}
+                                </span>
+
+                                <span
+                                    style={{
+                                        padding: "5px 20px",
+                                        background: "orange",
+                                        color: "white",
+                                        borderRadius: "5px"
+                                    }}
+                                    className="ml-2"
+                                >
+                                    {this.props.poll.totalVote > 0 ? ((100 * opt.vote) / this.props.poll.totalVote).toFixed(2) : 0} %
+                                </span>
+                            </Label>
+                        </FormGroup>
+                    ))
+                }
+
+                <FormGroup className="my-3">
+                    <Label>Enter your name</Label>
+                    <Input
+                        name="name"
+                        placeholder="Musa"
+                        value={this.state.value}
+                        onChange={this.handleChange}
+                        invalid={this.state.errors.name ? true : false}
+                    />
+                    {
+                        this.state.errors.name && <FormFeedback>{this.state.errors.name}</FormFeedback>
+                    }
+                </FormGroup>
+                
+                <Button type="submit">Submit your opinion</Button>
+
             </Form>
         )
     }
 }
+
+export default ParticipationFrom;
