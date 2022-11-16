@@ -1,6 +1,5 @@
 import React from "react";
-import {Form, FormGroup, FormFeedback, Input, CustomInput, Label, Button} from "reactstrap";
-
+import {Form, FormGroup, FormFeedback, Input, Label, Button} from "reactstrap";
 class ParticipationFrom extends React.Component {
     state = {
         name: '',
@@ -80,11 +79,11 @@ class ParticipationFrom extends React.Component {
                     </Button>
                 </div>
 
-                {
+                {                    
                     this.props.poll.options.map(opt => (
                         <FormGroup className="my-2" key={opt.id}>
                             <Label className="d-flex">
-                                <CustomInput
+                                <Input
                                     type="radio"
                                     id={opt.id}
                                     name="selectedOption"
